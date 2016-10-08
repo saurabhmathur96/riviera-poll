@@ -20,4 +20,6 @@ npm start`
 |----------|--------|-------------------------------------------------------------------------------------------|
 | /        | GET    | Serve the poll form.                                                                      |
 | /        | POST   | Save the response submitted via the poll form. Ensure that registration number is unique. |
+| /success | GET    | Redirect to this url when form is submitted successfully.                                 |
+| /error   | GET    | Redirect to this url when form validation fails.                                          |
 | /results | GET    | Serve a graph of the poll results.                                                        |
