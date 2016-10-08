@@ -6,7 +6,7 @@ var client = supertest(app);
 
 
 describe("index routes", function () {
-    it("GET / : Serve poll form", function (done) {
+    xit("GET / : Serve poll form", function (done) {
         client.get("/")
         .expect(200)
         .end(function (err) {
