@@ -3,9 +3,9 @@ riviera-poll is a web application to conduct a poll among VIT Students for which
 Each student can submit exactly one response which can have a maximum of three artists.
 
 ## Running Locally
-`git clone https://github.com/saurabhmathur96/riviera-poll.git`
-`npm i --silent`
-`npm start`
+`git clone https://github.com/saurabhmathur96/riviera-poll.git
+npm i --silent
+npm start`
 
 
 ## Routes
