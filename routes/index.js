@@ -36,7 +36,7 @@ router.post("/", function(req, res) {
     res.redirect('/success');
 
   });
-//var data = new UserData(item);
+data = new UserData(item);
 
 
 router.get("/result", function(req, res) {
