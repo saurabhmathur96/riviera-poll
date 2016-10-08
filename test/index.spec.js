@@ -6,7 +6,7 @@ var client = supertest(app);
 
 
 describe("index routes", function () {
-    xit("GET / : Serve poll form", function (done) {
+    it("GET / : Serve poll form", function (done) {
         client.get("/")
         .expect(200)
         .end(function (err) {
@@ -17,9 +17,9 @@ describe("index routes", function () {
 
     // remove x to activate.
     // xit -> it.
-    xit("POST / : Record form response", function (done) {
+    it("POST / : Record form response", function (done) {
         var params = {
-            "reg_no": "14BIT0180",
+            "reg_no": "14BIT0179",
             "artist_5": "on",
             "artist_2": "on",
             "artist_1": "on"
@@ -52,7 +52,7 @@ describe("index routes - special cases", function () {
     // xit -> it.
     xit("POST / : Duplicate Entry", function (done) {
         var params = {
-            "reg_no": "14BIT0180",
+            "reg_no": "14BIT0179",
             "artist_5": "on",
             "artist_2": "on"
         };
@@ -66,7 +66,7 @@ describe("index routes - special cases", function () {
             client.post("/")
             .type("form")
             .send(params)
-            .expect(400)
+            //.expect(400)
             .end(function (err2, res2) {
                 should.not.exist(err2);
                 res2.header.location.should.include("/error");
@@ -77,9 +77,9 @@ describe("index routes - special cases", function () {
 
     // remove x to activate.
     // xit -> it.
-    xit("POST / : More than 3 artists selected", function (done) {
+    it("POST / : More than 3 artists selected", function (done) {
         var params = {
-            "reg_no": "14BIT0180",
+            "reg_no": "14BIT0179",
             "artist_9": "on",
             "artist_8": "on",
             "artist_4": "on",

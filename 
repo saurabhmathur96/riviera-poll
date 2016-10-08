@@ -1,0 +1,16 @@
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+#   (use "git pull" to update your local branch)
+#
+# Changes to be committed:
+#	modified:   data/user-data.js
+#	deleted:    routes/data/user-data.js
+#	modified:   routes/index.js
+#	modified:   test/index.spec.js
+#	modified:   views/index.ejs
+#
+# Changes not staged for commit:
+#	modified:   routes/index.js
+#

@@ -9,7 +9,7 @@ var userDataSchema = new Schema(
     required: true,
     index: { unique: true }
   },
-  ArtistName: { type: String }
+  ArtistNames: { type: [String] }
 }
 );
 
