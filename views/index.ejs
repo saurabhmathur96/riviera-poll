@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+<<<<<<< HEAD
     
+=======
+    <title>Select Celebrities</title>
+>>>>>>> 53e2e206cd015a6b500da90abe126db35f764a60
     	<link rel='stylesheet' href='/stylesheets/style.css' />
     	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,11 +22,15 @@ body {
 
 
 .btn {
-	padding-left:24px;
-	padding-right:24px;
+
+	padding-left:28px;
+	padding-right:28px;
 	border-radius: 0;
+<<<<<<< HEAD
 	background-color:
 	margin-top:20px;
+=======
+>>>>>>> 53e2e206cd015a6b500da90abe126db35f764a60
 	background-color:#00BFFF;
 	color:#333;
 	border:none;
@@ -33,29 +41,41 @@ body {
 	background-color:#AFEEEE;
 }
 	#id2 label{
+<<<<<<< HEAD
 		padding-left:15px;
 		padding-right:0px;
 
+=======
+		margin-bottom:0;
+		padding-top:8px	;
+		
+
+		
+		
+>>>>>>> 53e2e206cd015a6b500da90abe126db35f764a60
 	}
 	.bg1 input[type=checkbox] {
-		display:inline-block;
+		display:block;
+		    margin-top:0;
+
 
 	}
 
 h3 {
 	font-family: 'Cabin', sans-serif;
-	margin-top:50px;
+	
 
 	}
+
 </style>
 
   <body>
-    <div class="col-sm-12 com-lg-12 col-md-12 bg0">
+    <div class="col-sm-12 com-lg-12 col-md-12 bg0" style="top:0px">
 <br>
 <br>
-<form action = ''  class="col-sm-12 col-lg-12 col-md-12">
+<form action = ''  class="col-sm-12 col-lg-12 col-md-12" name="myForm"  onsubmit ="return check()"> <!--on submit of form check() function for checkboxes called-->
 		<center>
-			<div class="col-sm-12 col-lg-12 col-md-12">
+			<div class="col-sm-12 col-lg-12 col-md-12" style="top:-10px">
 			<h2>Enter your Registration number</h2>
 		<input type="text" name='regNo' placeholder="Enter Registration number" class="form-control" style="max-width:500px">
 		</div>
@@ -64,6 +84,7 @@ h3 {
 		<br>
 		<br>
 
+<<<<<<< HEAD
 		<div class=" col-sm-21 col-md-12 col-lg-12 bg1" id="id2">
 
 		<h3>Select Your favourite Celebreties<span>(Atmost 3)</span></h3>
@@ -85,13 +106,91 @@ h3 {
 
 
 <button  type="submit"  role="button" class="btn btn-default " id="mybtn">Submit</button>
+=======
+		<div class=" col-sm-21 col-md-12 col-lg-12 bg1" id="id2"  style="top:-10px">
+
+		<h3>Select Your favourite Celebrities<span>(Atmost 3)</span></h3>
+			<!--List of all Celebrities-->
+		
+				<label>Shalmali Kholgade  </label> <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				<label>Arman Mailk   </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				<label>Sukhwinder  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade"> 
+				<label>Farhan Akhtar</label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				<label>Sonu Nigam  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				<label>Kk     </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				<label>Shankar Mahadaven  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				<label>Antra Mitra  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				<label>Sona Mahapatra  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				<label>Shreya Ghoshal  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
+				
+		
+				
+
+			</div>
+
+			
+<button  type="submit"    role="button" class="btn btn-default " id="mybtn" onclick="validatereg()" >Submit</button>
+>>>>>>> 53e2e206cd015a6b500da90abe126db35f764a60
 
 
 		</center>
 	</form>
-
+		
 
 
 	</div>
+	<script>
+	//function for validation of Registration No for 2016 batch only//
+		function validatereg(){
+			var reg = document.myForm.regNo;
+			Reg = /16[\w]{3}[0-9]{4}/i;
+			if(Reg.test(reg.value)){
+				
+				
+				return true;
+			}
+
+			else {
+				alert('Please enter a valid Registration number');
+				reg.style.border = '2px solid red';
+			}
+
+		}
+
+
+
+	//function for validation of checkboxes//	
+	function check() {
+			var count =0;
+			var x = document.getElementsByName('opt[]');
+			
+			for(var i =0 ; i<x.length; i++)
+			{
+				if(x[i].checked){
+					count++;
+
+
+
+				}
+				}
+				if(count==3){
+					return true;
+				}
+				else if(count <3){
+					alert('Select almost 3 Celebrities');
+				}
+				else if( count > 3){
+					alert('Cannot Select more than 3 Celebrities');
+				}
+				else {
+					alert("Please Select 3 Celebrities");
+				}
+				
+
+			
+			
+		}
+		
+	</script>
   </body>
 </html>
