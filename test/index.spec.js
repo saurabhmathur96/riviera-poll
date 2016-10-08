@@ -27,8 +27,8 @@ describe("index routes", function () {
         client.post("/")
         .type("form")
         .send(params)
-        .expect(200)
-        .end(function (err) {
+        .end(function (err, res) {
+            res.header.location.should.include("/success");
             should.not.exist(err);
             done();
         });
@@ -60,15 +60,16 @@ describe("index routes - special cases", function () {
         client.post("/")
         .type("form")
         .send(params)
-        .expect(200)
-        .end(function (err1) {
+        .end(function (err1, res1) {
             should.not.exist(err1);
+            res1.header.location.should.include("/success");
             client.post("/")
             .type("form")
             .send(params)
             .expect(400)
-            .end(function (err2) {
+            .end(function (err2, res2) {
                 should.not.exist(err2);
+                res2.header.location.should.include("/error");
                 done();
             });
         });
@@ -88,9 +89,9 @@ describe("index routes - special cases", function () {
         client.post("/")
         .type("form")
         .send(params)
-        .expect(400)
-        .end(function (err) {
+        .end(function (err, res) {
             should.not.exist(err);
+            res.header.location.should.include("/success");
             done();
         });
     });
