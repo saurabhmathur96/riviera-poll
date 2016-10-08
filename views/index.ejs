@@ -2,10 +2,96 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    	<link rel='stylesheet' href='/stylesheets/style.css' />
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+
   </head>
+  <style>
+body {
+	font-family: 'Cabin', sans-serif;
+	font-weight: bold;
+}
+
+
+.btn {
+	padding-left:24px;
+	padding-right:24px;
+	border-radius: 0;
+	background-color: 
+	margin-top:20px;
+	background-color:#00BFFF;
+	color:#333;
+	border:none; 
+	margin-top:20px;
+	transition:all 1s ease;
+	}
+.btn:hover {
+	background-color:#AFEEEE;
+}
+	#id2 label{
+		padding-left:15px;
+		padding-right:0px;
+		
+	}
+	.bg1 input[type=checkbox] {
+		display:inline-block;
+
+	}
+ 
+h3 {
+	font-family: 'Cabin', sans-serif;
+	margin-top:50px;
+
+	}
+</style>
+
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="col-sm-12 com-lg-12 col-md-12 bg0">
+<br>
+<br>
+<form action = ''  class="col-sm-12 col-lg-12 col-md-12">
+		<center>
+			<div class="col-sm-12 col-lg-12 col-md-12">
+			<h2>Enter your Registration number</h2>
+		<input type="text" name='regNo' placeholder="Enter Registration number" class="form-control" style="max-width:500px">	
+		</div>
+		
+		<br>
+		<br>
+		<br>
+
+		<div class=" col-sm-21 col-md-12 col-lg-12 bg1" id="id2">
+
+		<h3>Select Your favourite Celebreties<span>(Atmost 3)</span></h3>
+				<label>Shalmali Kholgade  </label>  <input type="checkbox" name="opt1">
+				<label>Arman Mailk   </label>  <input type="checkbox" name="opt2">
+				<label>Sukhwinder  </label>  <input type="checkbox" name="opt3">
+				<label>Farhan Akhtar</label>  <input type="checkbox" name="opt4">
+				<label>Sonu Nigam  </label>  <input type="checkbox" name="opt5">
+				<label>Kk     </label>  <input type="checkbox" name="opt6">
+				<label>Shankar Mahadaven  </label>  <input type="checkbox" name="opt7">
+				<label>Antra Mitra  </label>  <input type="checkbox" name="opt8">
+				<label>Sona Mahapatra  </label>  <input type="checkbox" name="opt9">
+				<label>Shreya Ghoshal  </label>  <input type="checkbox" name="opt10">
+				
+		
+				
+
+			</div>
+
+			
+<button  type="submit"  role="button" class="btn btn-default " id="mybtn">Submit</button>
+
+
+		</center>
+	</form>
+
+
+
+	</div>
   </body>
 </html>
