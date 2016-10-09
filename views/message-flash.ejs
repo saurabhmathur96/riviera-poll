@@ -1,9 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Riviera | Artist Poll</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.formvalidation/0.6.1/css/formValidation.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+		
+
+</head>
+
+<body>
 <div id="messages">
 <% Object.keys(messages).forEach(function (type) { %>
-  <ul class="<%= type %>">
+  <ul style="list-style-type:none" class="<%= type == "error" ? "text-danger bg-danger": "text-success bg-success" %>">
   <% messages[type].forEach(function (message) { %>
-    <li><i><%= message %></i></li>
+    <li style="font-size:25px"><i><%= message %></i></li>
   <% }) %>
   </ul>
 <% }) %>
 </div>
+</body>
+</html>
