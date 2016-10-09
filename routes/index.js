@@ -6,43 +6,45 @@ var UserData = require(path.join(__dirname, "..", "data", "user-data"));
 //var UserData = ('UserData', userDataSchema);
 
 router.get("/", function(req, res) {
-
     res.render('index');
+});
+
+router.post("/", function(req, res, next) {
+  var error = null;
+  if (req.body.reg_no == null || req.body.artist == null) {
+    error = new Error("Invalid Form.");
+    error.status = 400;
+
+return next(error);
+  }
+  var item = {
+    RegNo: req.body.reg_no.toUpperCase(),
+    ArtistNames: req.body.artist
+  };
+  if (!item.RegNo.match(/[1-9]{2}[A-Z]{3}[0-9]{4}/)) {
+    error = new Error("Invalid Registration Number.");
+    error.status = 400;
+
+return next(error);
+  }
+  if (item.ArtistNames.length > 3) {
+    req.flash('error', "You can vote for atmost 3 artists.");
+
+return res.redirect('/failure');
+  }
+  var data = new UserData(item);
+
+  data.save(function (err) {
+      if (err) {
+        req.flash('error', "You seem to have already voted once.");
+
+return res.redirect('/failure');
+      }
+      req.flash('success', "Your response was recorded successfully.");
+
+return res.redirect('/success');
 
   });
-
-router.post("/", function(req, res) {
-  var item = {
-    RegNo: null,
-    ArtistNames: []
-};
-  for (var key in req.body) {
-      if (req.body.hasOwnProperty(key)) {
-        if (key === 'reg_no') {
-           item.RegNo = req.body[key];
-        } else {
-            item.ArtistNames.push(key);
-          }
-      }
-
-    }
-
-    if (item.ArtistNames.length > 3) {
-
-      return res.redirect('/failure');
-    }
-    var data = new UserData(item);
-
-    data.save(function (err) {
-        if (err) {
-
-            return res.redirect('/failure');
-
-        }
-
-        return res.redirect('/success');
-
-    });
 });
 
 router.get("/result", function(req, res, next) {

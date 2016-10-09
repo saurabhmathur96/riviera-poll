@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 var dotenv = require("dotenv");
 var routes = require("./routes/index");
 var mongoose = require('mongoose');
+var session = require('cookie-session');
 var app = express();
 
 
@@ -23,9 +24,34 @@ app.set("view engine", "ejs");
 // app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(logger("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser());
+
+
+var keys = ['keyboard', 'cat'];
+if (process.env.COOKIE_KEY1 && process.env.COOKIE_KEY2) {
+    keys = [process.env.COOKIE_KEY1, process.env.COOKIE_KEY2];
+}
+// 1 hour
+var expiryDate = new Date(Number(Date.now()) + 3600000);
+app.use(session({
+    secret: process.env.COOKIE_SECRET || 'secret',
+    keys,
+    cookie: {
+        secure: true,
+        expires: expiryDate
+    }
+}));
+
+
+// set up message flashing
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+    res.locals.messages = require('express-messages')(req, res);
+    next();
+});
 
 mongoose.connect(process.env.MONGO_URI);
 app.use("/", routes);

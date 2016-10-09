@@ -23,11 +23,11 @@ describe("index routes", function () {
     it("POST / : Record form response", function (done) {
 
 
-        var params = { "reg_no": "14BIT0180" };
-        var artists = ["artist_5", "artist_2", "artist_1"];
-        for (var index = 0; index < artists.length; index += 1) {
-            params[artists[index]] = "on";
-        }
+        var params = {
+          "reg_no": "14BIT0180",
+           "artist": ["artist_5", "artist_2", "artist_1"]
+         };
+
 
         client.post("/")
         .type("form")
@@ -40,8 +40,8 @@ describe("index routes", function () {
                 should.not.exist(findError);
                 doc.RegNo.should.equal(params.reg_no);
                 doc.ArtistNames.should.be.instanceof(Array);
-                doc.ArtistNames.length.should.equal(artists.length);
-                doc.ArtistNames.should.include.members(artists);
+                doc.ArtistNames.length.should.equal(params.artist.length);
+                doc.ArtistNames.should.include.members(params.artist);
             });
             done();
         });
@@ -73,8 +73,7 @@ describe("index routes - special cases", function () {
     it("POST / : Duplicate Entry", function (done) {
         var params = {
             "reg_no": "14BIT0180",
-            "artist_5": "on",
-            "artist_2": "on"
+            "artist": ["artist_2", "artist_5"]
         };
 
         client.post("/")
@@ -86,7 +85,6 @@ describe("index routes - special cases", function () {
             client.post("/")
             .type("form")
             .send(params)
-            //.expect(400)
             .end(function (err2, res2) {
                 should.not.exist(err2);
                 res2.header.location.should.include("/failure");
@@ -100,11 +98,8 @@ describe("index routes - special cases", function () {
     it("POST / : More than 3 artists selected", function (done) {
         var params = {
             "reg_no": "14BIT0179",
-            "artist_9": "on",
-            "artist_8": "on",
-            "artist_4": "on",
-            "artist_2": "on",
-            "artist_1": "on"
+            "artist": ["artist_9", "artist_8",
+            "artist_4", "artist_2", "artist_1"]
         };
         client.post("/")
         .type("form")
