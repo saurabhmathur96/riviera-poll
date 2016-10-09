@@ -2,11 +2,7 @@ var express = require("express");
 var router = express.Router();
 var path = require("path");
 var UserData = require(path.join(__dirname, "..", "data", "user-data"));
-var item = {};
-var data = {};
-var Rno = 0;
-var key = 0;
-var ArtistNamesArray = [];
+
 //var UserData = ('UserData', userDataSchema);
 
 router.get("/", function(req, res) {
@@ -15,30 +11,31 @@ router.get("/", function(req, res) {
 
   });
 
-router.post("/", function(req, res) {
-
-  for (key in req.body) {
-      if (req.body) {
+/*router.post("/", function(req, res, next) {
+  var item = { RegNo: null, ArtistNames: [] };
+  for (var key in req.body) {
+      if (req.body.hasOwnProperty(key)) {
         if (key === 'reg_no') {
-          Rno = req.body[0];
+           item.Rno = req.body[key];
         } else {
-            ArtistNamesArray.push(req.body[key]);
+            item.ArtistNames.push(req.body[key]);
           }
       }
 
     }
-    item = {
-      RegNo: Rno,
-      ArtistNames: ArtistNamesArray
-    };
-    data = new UserData(item);
-    data.save();
-    res.redirect('/success');
+    var data = new UserData(item);
+    data.save(function (err) {
+        if (err)
+        {
+            return res.redirect('/failure');
 
-  });
-data = new UserData(item);
+        }
 
+return res.redirect('/success');
 
+    });
+});
+*/
 router.get("/result", function(req, res) {
   UserData.find({}, function(err, docs) {
     if (err) {
@@ -46,6 +43,14 @@ router.get("/result", function(req, res) {
     }
     res.json(docs);
   });
+});
+
+router.get("/failure", function (req, res) {
+  res.render('failure');
+});
+
+router.get("/success", function (req, res) {
+  res.render('success');
 });
 
 module.exports = router;

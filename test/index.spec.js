@@ -6,7 +6,7 @@ var client = supertest(app);
 
 
 describe("index routes", function () {
-    it("GET / : Serve poll form", function (done) {
+    xit("GET / : Serve poll form", function (done) {
         client.get("/")
         .expect(200)
         .end(function (err) {
@@ -17,7 +17,7 @@ describe("index routes", function () {
 
     // remove x to activate.
     // xit -> it.
-    it("POST / : Record form response", function (done) {
+    xit("POST / : Record form response", function (done) {
         var params = {
             "reg_no": "14BIT0179",
             "artist_5": "on",
@@ -77,7 +77,7 @@ describe("index routes - special cases", function () {
 
     // remove x to activate.
     // xit -> it.
-    it("POST / : More than 3 artists selected", function (done) {
+    xit("POST / : More than 3 artists selected", function (done) {
         var params = {
             "reg_no": "14BIT0179",
             "artist_9": "on",
