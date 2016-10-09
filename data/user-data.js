@@ -10,7 +10,8 @@ var userDataSchema = new Schema(
     index: { unique: true }
   },
   ArtistNames: { type: [String] }
-}
+  },
+  { timestamps: { createdAt: 'created_at' }}
 );
 
 module.exports = mongoose.model('UserData', userDataSchema);
