@@ -1,3 +1,4 @@
+/*
 var should = require("chai").should();
 var supertest = require("supertest");
 var path = require("path");
@@ -9,7 +10,7 @@ var UserData = require(path.join(__dirname, "..", "data", "user-data"));
 
 
 describe("index routes", function () {
-    xit("GET / : Serve poll form", function (done) {
+    it("GET / : Serve poll form", function (done) {
         client.get("/")
         .expect(200)
         .end(function (err) {
@@ -19,8 +20,8 @@ describe("index routes", function () {
     });
 
     // remove x to activate.
-    // xit -> it.
-    xit("POST / : Record form response", function (done) {
+    // it -> it.
+    it("POST / : Record form response", function (done) {
 
 
         var params = { "reg_no": "14BIT080" };
@@ -49,8 +50,8 @@ describe("index routes", function () {
     });
 
     // remove x to activate.
-    // xit -> it.
-    xit("GET /result : Serve result of poll as json", function (done) {
+    // it -> it.
+    it("GET /result : Serve result of poll as json", function (done) {
         client.get("/result")
         .expect(200)
         .end(function (err) {
@@ -59,19 +60,19 @@ describe("index routes", function () {
         });
     });
 
-  /*  after("cleanup", function (done) {
+    after("cleanup", function (done) {
         UserData.remove({ regNo: "14BIT0180" }, function (err) {
             should.not.exist(err);
             done();
         });
-    });*/
+    });
 });
 
 describe("index routes - special cases", function () {
 
     // remove x to activate.
-    // xit -> it.
-    xit("POST / : Duplicate Entry", function (done) {
+    // it -> it.
+    it("POST / : Duplicate Entry", function (done) {
         var params = {
             "reg_no": "14BIT0180",
             "artist_5": "on",
@@ -90,15 +91,15 @@ describe("index routes - special cases", function () {
             //.expect(400)
             .end(function (err2, res2) {
                 should.not.exist(err2);
-                res2.header.location.should.include("/error");
+                res2.header.location.should.include("/failure");
                 done();
             });
         });
     });
 
     // remove x to activate.
-    // xit -> it.
-    xit("POST / : More than 3 artists selected", function (done) {
+    // it -> it.
+    it("POST / : More than 3 artists selected", function (done) {
         var params = {
             "reg_no": "14BIT0179",
             "artist_9": "on",
@@ -112,7 +113,7 @@ describe("index routes - special cases", function () {
         .send(params)
         .end(function (err, res) {
             should.not.exist(err);
-            res.header.location.should.include("/success");
+            res.header.location.should.include("/failure");
 
             UserData.find({ RegNo: params.reg_no }, function (findError, docs) {
                 should.not.exist(findError);
@@ -122,11 +123,12 @@ describe("index routes - special cases", function () {
         });
     });
 
-    /*after("cleanup", function (done) {
+    after("cleanup", function (done) {
         var query = { regNo: { $in: ["14BIT0180", "14BIT0179"] } };
         UserData.remove(query, function (err) {
             should.not.exist(err);
             done();
         });
-    });*/
+    });
 });
+*/

@@ -11,8 +11,11 @@ router.get("/", function(req, res) {
 
   });
 
-/*router.post("/", function(req, res, next) {
-  var item = { RegNo: null, ArtistNames: [] };
+router.post("/", function(req, res) {
+  var item = {
+    RegNo: null,
+    ArtistNames: []
+};
   for (var key in req.body) {
       if (req.body.hasOwnProperty(key)) {
         if (key === 'reg_no') {
@@ -23,10 +26,13 @@ router.get("/", function(req, res) {
       }
 
     }
+    if (item.ArtistNames.length > 3) {
+      return res.redirect('/failure');
+    }
     var data = new UserData(item);
+
     data.save(function (err) {
-        if (err)
-        {
+        if (err) {
             return res.redirect('/failure');
 
         }
@@ -35,22 +41,22 @@ return res.redirect('/success');
 
     });
 });
-*/
-router.get("/result", function(req, res) {
+
+router.get("/result", function(req, res, next) {
   UserData.find({}, function(err, docs) {
     if (err) {
-      res.redirect('/error');
+      return next(err);
     }
     res.json(docs);
   });
 });
 
 router.get("/failure", function (req, res) {
-  res.render('failure');
+  return res.render('failure');
 });
 
 router.get("/success", function (req, res) {
-  res.render('success');
+  return res.render('success');
 });
 
 module.exports = router;
