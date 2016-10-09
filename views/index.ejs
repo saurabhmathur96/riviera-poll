@@ -1,7 +1,7 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<title>Select Celebrities</title>
+		<title>Riviera | Artist Poll</title>
 		<link rel='stylesheet' href='/stylesheets/style.css' />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,17 +25,20 @@
 
 		.btn {
 
+		
 			padding-left:28px;
 			padding-right:28px;
 			border-radius: 0;
-			background-color:#00BFFF;
-			color:#333;
+			background-color:black;
+			color:#DC143C;
 			border:none;
 			margin-top:20px;
-			transition:all 1s ease;
+			transition:all .5s ease;
+			margin-bottom:50px;
 		}
 		.btn:hover {
-			background-color:#AFEEEE;
+			background-color:#333;
+			color:white;
 		}
 		label{
 			margin-bottom:0;
@@ -67,15 +70,16 @@
 
 	</style>
 
-	<div  class="container-fluid" id="header">
-		<div class="header-img">
-			<img src='/images/header.jpg'>
-		</div>
-
-
-	</div>
+	
 
 	<body>
+		<div  class="container-fluid" id="header">
+			<div class="header-img">
+				<img src='/images/header.jpg'>
+			</div>
+
+
+		</div>
 
 		<div class="container-fluid">
 
@@ -86,28 +90,31 @@
 			<hr>
 
 
-			<div class="col-sm-8 com-lg-8 col-md-8 col-sm-offset-2 bg0" style="top:0px">
+			<div class="col-sm-8 com-lg-8 col-md-8 col-sm-offset-2 bg0" >
 
-				<form id="myForm" method="POST"  action="/" onsubmit ="return check()"> <!--on submit of form check() function for checkboxes called-->
+				<form id="myForm" method="POST"  action="/"> <!--on submit of form check() function for checkboxes called-->
 					<div class="row">
-            <label class="text-left">
+						<div class="form-group">
+						            <label class="text-left control-label">
 						<div class="col-sm-6 col-lg-6">
 							 <h4> Registration number: </h4>
             </div>
 						<div class="col-sm-6  col-lg-6">
-							<input type="text" name='reg_no' placeholder="Enter Registration number" class="form-control" >
+							<input type="text" name='reg_no' placeholder="Enter Registration number" class="form-control" style="width:105%;text-transform: uppercase;">
 						</div>
             </label>
+						</div>
 					</div>
 
 					<br>
 
 					<div class="row">
 
+						<div class="form-group">
 						<div class="col-sm-6">
 							<div class="bg1" id="id2">
 
-								<h4>Select Your favourite Celebrities <em>(Atmost 3)</em></h4>
+								<h4>Select Your favourite Celebrities <em>(Max 3)</em></h4>
 								<!--List of all Celebrities-->
 							</div>
 						</div>
@@ -125,11 +132,12 @@
 							<div class="checkbox"> <label>    <input type="checkbox" name="artist" value="Sherya Ghoshal">Shreya Ghoshal</label> </div>
 
 						</div>
+						</div>
 
 					</div>
 
-					<div class="row">
-						<button  type="submit"    role="button" class="btn btn-default " id="mybtn" onclick="validatereg()" >Submit</button>
+					<div class="row text-center">
+						<button  type="submit"    role="button" class="btn btn-default " id="mybtn"  >Submit</button>
 					</div>
 
 				</form>
@@ -139,7 +147,7 @@
 	</div>
 	<script>
 		//function for validation of Registration No for 2016 batch only//
-		function validatereg(){
+		/*/function validatereg(){
 			var reg = document.myForm.reg_no;
 			Reg = /1[0-9][\w]{3}[0-9]{4}/i;
 			if(Reg.test(reg.value)){
@@ -150,7 +158,7 @@
 
 			else {
 				alert('Please enter a valid Registration number');
-					//reg.style.border = '2px solid red';
+					
 				}
 
 				return false;
@@ -189,7 +197,7 @@
 			return false;
 
 
-		}
+		}*/
 
 	</script>
 
@@ -206,24 +214,54 @@
             validating: 'glyphicon glyphicon-refresh'
         },
 
+
         // List of fields and their validation rules
         fields: {
             reg_no: {
                 validators: {
                     notEmpty: {
-                        message: 'The username is required and cannot be empty'
+                        message: 'The Vit Registration number is Required'
                     },
                    
                     regexp: {
                         regexp: /1[0-9][\w]{3}[0-9]{4}/i ,
-                        message: 'The username can only consist of alphabetical, number and underscore'
+                        message: 'Enter a valid Vit Registration number'
                     }
                 }
-            }
+            },
+
+            artist: {
+                    validators: {
+                        callback: {
+                            message: 'Select Atmost 3',
+                            callback: function (value, validator, $field) {
+                                // Determine the numbers which are generated in captchaOperation
+                                	var count =0;
+									var x = document.getElementsByName('artist');
+                                	for(var i =0 ; i<x.length; i++)
+									{	
+										if(x[i].checked){
+										count++;
+
+
+
+										}
+										}
+									
+
+
+                                return count>3 ? false : true;
+                            }
+                        }
+                    }
+                }
             
         }
     });
 });
+
+
+
 	</script>
 </body>
 </html>

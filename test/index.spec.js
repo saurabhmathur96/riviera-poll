@@ -25,7 +25,7 @@ describe("index routes", function () {
 
         var params = { "reg_no": "14BIT0180" };
         var artists = ["artist_5", "artist_2", "artist_1"];
-        for (var index = 0; index < artists.length; index+=1) {
+        for (var index = 0; index < artists.length; index += 1) {
             params[artists[index]] = "on";
         }
 
