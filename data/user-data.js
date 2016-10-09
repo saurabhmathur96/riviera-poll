@@ -11,7 +11,7 @@ var userDataSchema = new Schema(
   },
   ArtistNames: { type: [String] }
   },
-  { timestamps: { createdAt: 'created_at' }}
+  { timestamps: { createdAt: 'created_at' } }
 );
 
 module.exports = mongoose.model('UserData', userDataSchema);

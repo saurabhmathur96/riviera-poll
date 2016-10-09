@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+     <title>Bar Chart</title>
+     <meta http-equiv="X-UA-Compatible" content="IE=9">
+     <style>
+     svg g text {
+        font: 16px sans-serif;
+        text-align: right;
+        padding: 3px;
+        margin: 1px;
+    }
+     </style>
+  </head>
+  <body>
+    <div id="chart"> </div>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    
+
+
+<script>
+var colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a'].sort();
+var initData = [{ _id: "Shalmali Kholgade", count : 0 },
+{ _id: "Arman Malik", count : 0 },
+{ _id: "Sukhwinder", count : 0 },
+{ _id: "Farhan Akhtar", count : 0 },
+{ _id: "Sonu Nigam", count : 0 },
+{ _id: "Kk", count : 0 },
+{ _id: "Shankar Mahadaven", count : 0 },
+{ _id: "Antra Mitra", count : 0 },
+{ _id: "Sona Mahapatra", count : 0 },
+{ _id: "Sherya Ghoshal", count : 0 }]
+
+var valueLabelWidth = 80; // space reserved for value labels (right)
+var barHeight = 40; // height of one bar
+var barLabelWidth = 200; // space reserved for bar labels
+var barLabelPadding = 10; // padding between bar and bar labels (left)
+var gridLabelHeight = 36; // space reserved for gridline labels
+var gridChartOffset = 3; // space between start of grid and first bar
+var maxBarWidth = 420; // width of the bar with the max value
+
+// accessor functions 
+var barLabel = function(d) { return d['_id']; };
+var barValue = function(d) { return parseFloat(d['count']); };
+
+function renderChart(data) {
+// scales
+var yScale = d3.scale.ordinal().domain(d3.range(0, data.length)).rangeBands([0, data.length * barHeight]);
+var y = function(d, i) { return yScale(i); };
+var yText = function(d, i) { return y(d, i) + yScale.rangeBand() / 2; };
+var x = d3.scale.linear().domain([0, 100]).range([0, maxBarWidth]);
+// svg container element
+var chart = d3.select('#chart').append("svg")
+  .attr('width', maxBarWidth + barLabelWidth + valueLabelWidth)
+  .attr('height', gridLabelHeight + gridChartOffset + data.length * barHeight);
+
+// bar labels
+var labelsContainer = chart.append('g')
+  .attr('transform', 'translate(' + (barLabelWidth - barLabelPadding) + ',' + (gridLabelHeight + gridChartOffset) + ')'); 
+labelsContainer.selectAll('text').data(data).enter().append('text')
+  .attr("class", "bar-label")
+  .attr('y', yText)
+  .attr('stroke', 'none')
+  .attr('fill', '#333')
+  .attr("dy", ".35em") // vertical-align: middle
+  .attr('text-anchor', 'end')
+  .text(barLabel);
+// bars
+var barsContainer = chart.append('g')
+  .attr('transform', 'translate(' + barLabelWidth + ',' + (gridLabelHeight + gridChartOffset) + ')'); 
+barsContainer.selectAll("rect").data(data).enter().append("rect")
+  .attr("class", "bar")
+  .attr('y', y)
+  .attr('height', yScale.rangeBand())
+  .attr('width', function(d) { return x(barValue(d)); })
+  .attr('stroke', 'white')
+  .attr('fill', function (d, i) { return colors[i]; });
+// bar value labels
+barsContainer.selectAll("text").data(data).enter().append("text")
+.attr("class", "bar-value-label")
+  .attr("x", function(d) { return x(barValue(d)); })
+  .attr("y", yText)
+  .attr("dx", 3) // padding-left
+  .attr("dy", ".35em") // vertical-align: middle
+  .attr("text-anchor", "start") // text-align: right
+  .attr("fill", "#333")
+  .attr("stroke", "none")
+  .text(function(d) { return d3.round(barValue(d), 2) + "%"; });
+
+
+}
+
+var updateChart = function (data) {
+
+    var yScale = d3.scale.ordinal().domain(d3.range(0, data.length)).rangeBands([0, data.length * barHeight]);
+    var y = function(d, i) { return yScale(i); };
+    var yText = function(d, i) { return y(d, i) + yScale.rangeBand() / 2; };
+    var x = d3.scale.linear().domain([0, d3.max(data, barValue)]).range([0, maxBarWidth]);
+
+    var chart = d3.select('#chart svg')
+    chart.selectAll(".bar")
+    .data(data).transition().duration(1500).ease("quad")
+    .attr('width', function(d) { return x(barValue(d)); })
+    .attr("transform", function(d,i) {
+            return 'translate(' + barLabelWidth - x(barValue(d)) + ',' + (gridLabelHeight + gridChartOffset) + ')';
+        })
+
+
+chart.selectAll(".bar-value-label").data(data).transition().duration(1500).ease("quad")
+  .attr("x", function(d) { return x(barValue(d)); })
+  .attr("y", yText)
+  .attr("dx", 3) // padding-left
+  .attr("dy", ".35em") // vertical-align: middle
+  .attr("text-anchor", "start") // text-align: right
+  .attr("fill", "#333")
+  .attr("stroke", "none")
+  .attr("transform", function(d, i) {
+      return 'translate(' + barLabelWidth - x(barValue(d)) + ',' + (gridLabelHeight + gridChartOffset) + ')';
+   })
+  .text(function(d) { return d3.round(barValue(d), 2) + "%"; });
+
+}
+
+var normalizeToPercent = function (data) {
+    var sum = data.reduce(function(pv, cv) { return pv + cv.count; }, 0);
+    if (sum == 0) {
+        return data;
+    } else {
+        data = data.map( function (d) { d.count = d.count * 100 / sum; return d; });
+    return data;
+    }
+} 
+
+var findByKey = function (data, key, value) {
+    var result = data.filter(function (e) {
+        return e[key] == value;
+    });
+    if (result.length < 1) { 
+        return null;
+    } else {
+        return result[0];
+    }
+} 
+var timeout = 5000;
+var fetchDataAndRenderChart = function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", "./result", true);
+    xhr.onload = function (e) {
+        var req = e.target;
+        if (req.readyState === 4 && req.status == 200) {
+            try {
+                var data = normalizeToPercent(JSON.parse(req.responseText));
+                var dataset = Object.create(initData);
+                for (var i=0; i<dataset.length; i++) {
+                    var record = findByKey(data, "_id", dataset[i]._id);
+                    if (record == null) continue;
+                    dataset[i].count = record.count;
+                }
+                updateChart(dataset);
+                setTimeout(fetchDataAndRenderChart, timeout);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        
+    }
+    xhr.send();
+}
+renderChart(normalizeToPercent(initData));
+fetchDataAndRenderChart();
+
+    </script>
+  </body>
+</html>
