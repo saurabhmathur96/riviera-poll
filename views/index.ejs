@@ -178,12 +178,12 @@
             reg_no: {
                 validators: {
                     notEmpty: {
-                        message: 'The Vit Registration number is Required'
+                        message: '<h4>The VIT Registration number is Required</h4>'
                     },
                    
                     regexp: {
                         regexp: /1[0-9][\w]{3}[0-9]{4}/i ,
-                        message: 'Enter a valid Vit Registration number'
+                        message: '<h4>Enter a valid VIT Registration number</h4>'
                     }
                 }
             },
@@ -191,7 +191,7 @@
             artist: {
                     validators: {
                         callback: {
-                            message: 'Select Atmost 3',
+                            message: '<h4>Select Atmost 3</h4>',
                             callback: function (value, validator, $field) {
                                 // Determine the numbers which are generated in captchaOperation
                                 	var count =0;
