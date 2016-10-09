@@ -1,130 +1,163 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Select Celebrities</title>
-    	<link rel='stylesheet' href='/stylesheets/style.css' />
-    	<meta charset="utf-8">
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Select Celebrities</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 
-  </head>
-  <style>
-body {
-	font-family: 'Cabin', sans-serif;
-	font-weight: bold;
-}
+	</head>
+	<style>
+		body {
+			font-family: 'Cabin', sans-serif;
+			font-weight: bold;
+		}
 
 
-.btn {
+		.btn {
 
-	padding-left:28px;
-	padding-right:28px;
-	border-radius: 0;
-	background-color:#00BFFF;
-	color:#333;
-	border:none; 
-	margin-top:20px;
-	transition:all 1s ease;
-	}
-.btn:hover {
-	background-color:#AFEEEE;
-}
-	#id2 label{
-		margin-bottom:0;
-		padding-top:8px	;
-		
-
-		
-		
-	}
-	.bg1 input[type=checkbox] {
-		display:block;
-		    margin-top:0;
-
-
-	}
- 
-h3 {
-	font-family: 'Cabin', sans-serif;
-	
-
-	}
-
-</style>
-
-  <body>
-    <div class="col-sm-12 com-lg-12 col-md-12 bg0" style="top:0px">
-<br>
-<br>
-<form action = ''  class="col-sm-12 col-lg-12 col-md-12" name="myForm"  onsubmit ="return check()"> <!--on submit of form check() function for checkboxes called-->
-		<center>
-			<div class="col-sm-12 col-lg-12 col-md-12" style="top:-10px">
-			<h2>Enter your Registration number</h2>
-		<input type="text" name='regNo' placeholder="Enter Registration number" class="form-control" style="max-width:500px">	
-		</div>
-		
-		<br>
-		<br>
-		<br>
-
-		<div class=" col-sm-21 col-md-12 col-lg-12 bg1" id="id2"  style="top:-10px">
-
-		<h3>Select Your favourite Celebrities<span>(Atmost 3)</span></h3>
-			<!--List of all Celebrities-->
-		
-				<label>Shalmali Kholgade  </label> <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				<label>Arman Mailk   </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				<label>Sukhwinder  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade"> 
-				<label>Farhan Akhtar</label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				<label>Sonu Nigam  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				<label>Kk     </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				<label>Shankar Mahadaven  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				<label>Antra Mitra  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				<label>Sona Mahapatra  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				<label>Shreya Ghoshal  </label>  <input type="checkbox" name="opt[]" value="Shalmali Kholgade">
-				
-		
-				
-
-			</div>
+			padding-left:28px;
+			padding-right:28px;
+			border-radius: 0;
+			background-color:#00BFFF;
+			color:#333;
+			border:none; 
+			margin-top:20px;
+			transition:all 1s ease;
+		}
+		.btn:hover {
+			background-color:#AFEEEE;
+		}
+		label{
+			margin-bottom:0;
+			padding-top:8px	;
+			display:block!important;
 
 			
-<button  type="submit"    role="button" class="btn btn-default " id="mybtn" onclick="validatereg()" >Submit</button>
+		}
+		 input[type=checkbox] {
+	
+		 	padding:auto;
+			width:18px;
+			height:18px;
+
+		}
+
+		h3 {
+			font-family: 'Cabin', sans-serif;
 
 
-		</center>
-	</form>
-		
+
+		}
+		#header {
+			padding:0;
+		}
+		#header .header-img img  {
+			width:100%!important;
+
+		}
+
+	</style>
+
+	<div  class="container-fluid" id="header">
+		<div class="header-img">
+			<img src='/images/header.jpg'>
+		</div>
 
 
 	</div>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<h1 class="text-center">Riviera 2017</h1>
+
+			<h2 class="text-center">Artist Poll</h2>
+
+			<hr>	
+
+
+			<div class="col-sm-8 com-lg-8 col-md-8 col-sm-offset-2 bg0" style="top:0px">
+				
+				<form name="myForm"  onsubmit ="return check()"> <!--on submit of form check() function for checkboxes called-->
+					<div class="row">	
+						<div class="col-sm-6 col-lg-6">
+							<label class="text-left">Registration number:
+							</label>
+						</div>
+						<div class="col-sm-6  col-lg-6">
+							<input type="text" name='regNo' placeholder="Enter Registration number" class="form-control" >
+						</div>	
+					</div>
+
+					<br>
+
+					<div class="row">
+
+						<div class="col-sm-6">
+							<div class="bg1" id="id2"  style="top:-10px">
+
+								<h4>Select Your favourite Celebrities <span>(Atmost 3)</span></h4>
+								<!--List of all Celebrities-->
+							</div>
+						</div>
+						<div class="col-sm-4 col-sm-offset-2">
+							
+							<label > <input type="checkbox" name="artist" value="Shalmali Kholgade"> Shalmali Kholgade</label>
+							<label >    <input type="checkbox" name="artist" value="Arman Malik">Arman Mailk </label> 
+							<label >   <input type="checkbox" name="artist" value="Sukhwinder">Sukhwinder</label>  
+							<label >  <input type="checkbox" name="artist" value="Farhan Akhtar"> Farhan Akhtar</label> 
+							<label >    <input type="checkbox" name="artist" value="Sonu Nigam">Sonu Nigam</label> 
+							<label >      <input type="checkbox" name="artist" value="Kk">Kk </label> 
+							<label >   <input type="checkbox" name="artist" value="Shankar Mahadaven">Shankar Mahadaven</label> 
+							<label >  <input type="checkbox" name="artist" value="Antra Mitra">Antra Mitra</label> 
+							<label>   <input type="checkbox" name="artist" value="Sona Mahapatra">Sona Mahapatra</label> 
+							<label>    <input type="checkbox" name="artist" value="Sherya Ghoshal">Shreya Ghoshal</label> 
+
+						</div>
+
+					</div>	
+
+					<div class="row">
+						<button  type="submit"    role="button" class="btn btn-default " id="mybtn" onclick="validatereg()" >Submit</button>
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
 	<script>
-	//function for validation of Registration No for 2016 batch only//
+		//function for validation of Registration No for 2016 batch only//
 		function validatereg(){
 			var reg = document.myForm.regNo;
 			Reg = /16[\w]{3}[0-9]{4}/i;
 			if(Reg.test(reg.value)){
-				
-				
+
+
 				return true;
 			}
 
 			else {
 				alert('Please enter a valid Registration number');
-				reg.style.border = '2px solid red';
+					//reg.style.border = '2px solid red';
+				}
+
+				return false;
+
 			}
 
-		}
 
 
-
-	//function for validation of checkboxes//	
-	function check() {
+		//function for validation of checkboxes//	
+		function check() {
 			var count =0;
-			var x = document.getElementsByName('opt[]');
-			
+			var x = document.getElementsByName('artist');
+
 			for(var i =0 ; i<x.length; i++)
 			{
 				if(x[i].checked){
@@ -133,25 +166,25 @@ h3 {
 
 
 				}
-				}
-				if(count==3){
-					return true;
-				}
-				else if(count <3){
-					alert('Select almost 3 Celebrities');
-				}
-				else if( count > 3){
-					alert('Cannot Select more than 3 Celebrities');
-				}
-				else {
-					alert("Please Select 3 Celebrities");
-				}
-				
+			}
+			if(count==3){
+				return true;
+			}
+			else if(count <3){
+				alert('Select almost 3 Celebrities');
+			}
+			else if( count > 3){
+				alert('Cannot Select more than 3 Celebrities');
+			}
+			else {
+				alert("Please Select 3 Celebrities");
+			}
 
-			
-			
+			return false;
+
+
 		}
-		
+
 	</script>
-  </body>
+</body>
 </html>
