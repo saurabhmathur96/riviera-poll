@@ -30,7 +30,8 @@ return next(error);
   if (!item.RegNo.match(/[1-9]{2}[A-Z]{3}[0-9]{4}/)) {
     error = new Error("Invalid Registration Number.");
     error.status = 400;
-    return next(error);
+
+return next(error);
   }
   if (item.ArtistNames.length > 3) {
     req.flash('error', "You can vote for atmost 3 artists.");
@@ -77,7 +78,7 @@ router.get("/success", function (req, res) {
   return res.render('success');
 });
 router.get('/analytics', function(req, res) {
-    res.render('analytics');  
+    res.render('analytics');
 
 });
 
