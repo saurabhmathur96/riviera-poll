@@ -31,14 +31,15 @@
 			border-radius: 0;
 			background-color:black;
 			color:#DC143C;
-			border:none;
+			border:1px solid black;
 			margin-top:20px;
 			transition:all .5s ease;
 			margin-bottom:50px;
 		}
 		.btn:hover {
-			background-color:#333;
-			color:white;
+			
+			color:black;
+			border:1px solid black;
 		}
 		label{
 			margin-bottom:0;
@@ -141,70 +142,22 @@
 					</div>
 
 				</form>
+				<hr>
 
 
-			<!--<h5>Developed By-</h5>
-				 <a href=""></a></p>		
+			<h5>Developed By-</h5>
+				 <a href="https://github.com/anishsingh20" style="text-decoration:none ">Anish Singh Walia</a>
+				 <br>
+				 <a href="https://github.com/AdityaShaha"  style="text-decoration:none "> Aditya Shaha</a>
 
-			</div>-->
+
+			</div>
 
 		</div>
 	</div>
-	<script>
-		//function for validation of Registration No for 2016 batch only//
-		/*/function validatereg(){
-			var reg = document.myForm.reg_no;
-			Reg = /1[0-9][\w]{3}[0-9]{4}/i;
-			if(Reg.test(reg.value)){
-
-
-				return true;
-			}
-
-			else {
-				alert('Please enter a valid Registration number');
-					
-				}
-
-				return false;
-
-			}
-
-
-
-		//function for validation of checkboxes//
-		function check() {
-			var count =0;
-			var x = document.getElementsByName('artist');
-
-			for(var i =0 ; i<x.length; i++)
-			{
-				if(x[i].checked){
-					count++;
-
-
-
-				}
-			}
-			if(count==3){
-				return true;
-			}
-			else if(count <3){
-				alert('Select almost 3 Celebrities');
-			}
-			else if( count > 3){
-				alert('Cannot Select more than 3 Celebrities');
-			}
-			else {
-				alert("Please Select 3 Celebrities");
-			}
-
-			return false;
-
-
-		}*/
-
-	</script>
+	
+		
+	
 
 	<script type="text/javascript">
 		$(document).ready(function() {
