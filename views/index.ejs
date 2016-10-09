@@ -5,9 +5,16 @@
 		<link rel='stylesheet' href='/stylesheets/style.css' />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.formvalidation/0.6.1/css/formValidation.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/jquery.formvalidation/0.6.1/js/formValidation.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/jquery.formvalidation/0.6.1/js/framework/bootstrap.min.js"></script>
+		
+		
+		
+		
 
 	</head>
 	<style>
@@ -81,14 +88,14 @@
 
 			<div class="col-sm-8 com-lg-8 col-md-8 col-sm-offset-2 bg0" style="top:0px">
 
-				<form name="myForm" method="POST"  action="/" onsubmit ="return check()"> <!--on submit of form check() function for checkboxes called-->
+				<form id="myForm" method="POST"  action="/" onsubmit ="return check()"> <!--on submit of form check() function for checkboxes called-->
 					<div class="row">
             <label class="text-left">
 						<div class="col-sm-6 col-lg-6">
 							 <h4> Registration number: </h4>
             </div>
 						<div class="col-sm-6  col-lg-6">
-							<input type="text" name='regNo' placeholder="Enter Registration number" class="form-control" >
+							<input type="text" name='reg_no' placeholder="Enter Registration number" class="form-control" >
 						</div>
             </label>
 					</div>
@@ -133,8 +140,8 @@
 	<script>
 		//function for validation of Registration No for 2016 batch only//
 		function validatereg(){
-			var reg = document.myForm.regNo;
-			Reg = /16[\w]{3}[0-9]{4}/i;
+			var reg = document.myForm.reg_no;
+			Reg = /1[0-9][\w]{3}[0-9]{4}/i;
 			if(Reg.test(reg.value)){
 
 
@@ -184,6 +191,39 @@
 
 		}
 
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+    $('#myForm').formValidation({
+        // I am validating Bootstrap form
+        framework: 'bootstrap',
+
+        // Feedback icons
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+
+        // List of fields and their validation rules
+        fields: {
+            reg_no: {
+                validators: {
+                    notEmpty: {
+                        message: 'The username is required and cannot be empty'
+                    },
+                   
+                    regexp: {
+                        regexp: /1[0-9][\w]{3}[0-9]{4}/i ,
+                        message: 'The username can only consist of alphabetical, number and underscore'
+                    }
+                }
+            }
+            
+        }
+    });
+});
 	</script>
 </body>
 </html>
