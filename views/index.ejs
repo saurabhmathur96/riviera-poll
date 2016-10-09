@@ -13,7 +13,6 @@
 	<style>
 		body {
 			font-family: 'Cabin', sans-serif;
-			font-weight: bold;
 		}
 
 
@@ -24,7 +23,7 @@
 			border-radius: 0;
 			background-color:#00BFFF;
 			color:#333;
-			border:none; 
+			border:none;
 			margin-top:20px;
 			transition:all 1s ease;
 		}
@@ -36,17 +35,16 @@
 			padding-top:8px	;
 			display:block!important;
 
-			
+
 		}
 		 input[type=checkbox] {
-	
+
 		 	padding:auto;
 			width:18px;
-			height:18px;
 
 		}
 
-		h3 {
+		h3, h4 {
 			font-family: 'Cabin', sans-serif;
 
 
@@ -78,20 +76,21 @@
 
 			<h2 class="text-center">Artist Poll</h2>
 
-			<hr>	
+			<hr>
 
 
 			<div class="col-sm-8 com-lg-8 col-md-8 col-sm-offset-2 bg0" style="top:0px">
-				
-				<form name="myForm"  onsubmit ="return check()"> <!--on submit of form check() function for checkboxes called-->
-					<div class="row">	
+
+				<form name="myForm" method="POST"  action="/" onsubmit ="return check()"> <!--on submit of form check() function for checkboxes called-->
+					<div class="row">
+            <label class="text-left">
 						<div class="col-sm-6 col-lg-6">
-							<label class="text-left">Registration number:
-							</label>
-						</div>
+							 <h4> Registration number: </h4>
+            </div>
 						<div class="col-sm-6  col-lg-6">
 							<input type="text" name='regNo' placeholder="Enter Registration number" class="form-control" >
-						</div>	
+						</div>
+            </label>
 					</div>
 
 					<br>
@@ -99,28 +98,28 @@
 					<div class="row">
 
 						<div class="col-sm-6">
-							<div class="bg1" id="id2"  style="top:-10px">
+							<div class="bg1" id="id2">
 
-								<h4>Select Your favourite Celebrities <span>(Atmost 3)</span></h4>
+								<h4>Select Your favourite Celebrities <em>(Atmost 3)</em></h4>
 								<!--List of all Celebrities-->
 							</div>
 						</div>
-						<div class="col-sm-4 col-sm-offset-2">
-							
-							<label > <input type="checkbox" name="artist" value="Shalmali Kholgade"> Shalmali Kholgade</label>
-							<label >    <input type="checkbox" name="artist" value="Arman Malik">Arman Mailk </label> 
-							<label >   <input type="checkbox" name="artist" value="Sukhwinder">Sukhwinder</label>  
-							<label >  <input type="checkbox" name="artist" value="Farhan Akhtar"> Farhan Akhtar</label> 
-							<label >    <input type="checkbox" name="artist" value="Sonu Nigam">Sonu Nigam</label> 
-							<label >      <input type="checkbox" name="artist" value="Kk">Kk </label> 
-							<label >   <input type="checkbox" name="artist" value="Shankar Mahadaven">Shankar Mahadaven</label> 
-							<label >  <input type="checkbox" name="artist" value="Antra Mitra">Antra Mitra</label> 
-							<label>   <input type="checkbox" name="artist" value="Sona Mahapatra">Sona Mahapatra</label> 
-							<label>    <input type="checkbox" name="artist" value="Sherya Ghoshal">Shreya Ghoshal</label> 
+						<div class="col-sm-4">
+
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Shalmali Kholgade"> Shalmali Kholgade</label> </div>
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Arman Malik">Arman Mailk </label> </div>
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Sukhwinder">Sukhwinder</label> </div>
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Farhan Akhtar"> Farhan Akhtar</label> </div>
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Sonu Nigam">Sonu Nigam</label> </div>
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Kk">Kk </label> </div>
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Shankar Mahadaven">Shankar Mahadaven</label> </div>
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Antra Mitra">Antra Mitra</label> </div>
+							<div class="checkbox"> <label>  <input type="checkbox" name="artist" value="Sona Mahapatra">Sona Mahapatra</label> </div>
+							<div class="checkbox"> <label>    <input type="checkbox" name="artist" value="Sherya Ghoshal">Shreya Ghoshal</label> </div>
 
 						</div>
 
-					</div>	
+					</div>
 
 					<div class="row">
 						<button  type="submit"    role="button" class="btn btn-default " id="mybtn" onclick="validatereg()" >Submit</button>
@@ -153,7 +152,7 @@
 
 
 
-		//function for validation of checkboxes//	
+		//function for validation of checkboxes//
 		function check() {
 			var count =0;
 			var x = document.getElementsByName('artist');

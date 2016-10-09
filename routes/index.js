@@ -19,25 +19,28 @@ router.post("/", function(req, res) {
   for (var key in req.body) {
       if (req.body.hasOwnProperty(key)) {
         if (key === 'reg_no') {
-           item.Rno = req.body[key];
+           item.RegNo = req.body[key];
         } else {
-            item.ArtistNames.push(req.body[key]);
+            item.ArtistNames.push(key);
           }
       }
 
     }
+
     if (item.ArtistNames.length > 3) {
+
       return res.redirect('/failure');
     }
     var data = new UserData(item);
 
     data.save(function (err) {
         if (err) {
+
             return res.redirect('/failure');
 
         }
 
-return res.redirect('/success');
+        return res.redirect('/success');
 
     });
 });

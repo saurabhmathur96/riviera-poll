@@ -1,4 +1,3 @@
-/*
 var should = require("chai").should();
 var supertest = require("supertest");
 var path = require("path");
@@ -24,9 +23,9 @@ describe("index routes", function () {
     it("POST / : Record form response", function (done) {
 
 
-        var params = { "reg_no": "14BIT080" };
-        var artists = ["artist_5, artist_2, artist_1"];
-        for (var index in artists) {
+        var params = { "reg_no": "14BIT0180" };
+        var artists = ["artist_5", "artist_2", "artist_1"];
+        for (var index = 0; index < artists.length; index+=1) {
             params[artists[index]] = "on";
         }
 
@@ -36,14 +35,13 @@ describe("index routes", function () {
         .end(function (err, res) {
             should.not.exist(err);
             res.header.location.should.include("/success");
-
-            UserData.find({ RegNo: params.reg_no }, function (findError, docs) {
+            var query = { RegNo: params.reg_no };
+            UserData.findOne(query, function (findError, doc) {
                 should.not.exist(findError);
-                docs.length.should.equal(1);
-                docs[0].RegNo.should.equal(params.reg_no);
-                docs[0].ArtistNames.should.be.instanceof(Array);
-                docs[0].ArtistNames.length.should.equal(3);
-                docs[0].ArtistNames.should.include.members(artists);
+                doc.RegNo.should.equal(params.reg_no);
+                doc.ArtistNames.should.be.instanceof(Array);
+                doc.ArtistNames.length.should.equal(artists.length);
+                doc.ArtistNames.should.include.members(artists);
             });
             done();
         });
@@ -61,7 +59,7 @@ describe("index routes", function () {
     });
 
     after("cleanup", function (done) {
-        UserData.remove({ regNo: "14BIT0180" }, function (err) {
+        UserData.remove({ RegNo: "14BIT0180" }, function (err) {
             should.not.exist(err);
             done();
         });
@@ -124,11 +122,10 @@ describe("index routes - special cases", function () {
     });
 
     after("cleanup", function (done) {
-        var query = { regNo: { $in: ["14BIT0180", "14BIT0179"] } };
+        var query = { RegNo: { $in: ["14BIT0180", "14BIT0179"] } };
         UserData.remove(query, function (err) {
             should.not.exist(err);
             done();
         });
     });
 });
-*/
