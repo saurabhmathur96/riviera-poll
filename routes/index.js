@@ -77,6 +77,10 @@ router.get("/failure", function (req, res) {
 router.get("/success", function (req, res) {
   return res.render('success');
 });
+router.get('/analytics', function(req, res) {
+    res.render('analytics');
+
+});
 
 
 module.exports = router;

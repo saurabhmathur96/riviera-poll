@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-cloak>
+<head>
+	<title>Riviera | Artist Poll</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.formvalidation/0.6.1/css/formValidation.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+
+
+
+
+
+
+</head>
+<body ng-controller = "myctrl">
+	<div class="jumbotron">
+		<center>
+			<span class="result"></span>
+		</center>
+	</div>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	
+	
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metrics-graphics/2.10.1/metricsgraphics.min.css" />
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/metrics-graphics/2.10.1/metricsgraphics.min.js"></script>
+	<script type="text/javascript">
+		/*MG.data_graphic({
+			title: "Analytics",
+			description: "Polls for Riviera",
+			data: [{ _id: "Farhan Akhtar" ,count: 10 },{_id: "Ranvir Kapoor" ,count: 15 },{ _id: "Anish Singh Walia" ,count: 100 },{_id: "Mrinal" ,count: 12 },{ _id: "Kriti Senon" ,count: 31 },{_id: "Shankar" ,count: 13 },{ _id: "Ranveer Singh" ,count: 41 },{_id: "Shreya Ghoshal" ,count: 22 }],
+			width: 800,
+			height: 500,
+			target: ".result",
+			x_accessor: "_id",
+			y_accessor: "count",
+			chart_type: "bar",
+			bar_orientation : "horizontal",
+
+		}); */
+	</script>
+
+	<script>
+	var app = angular.module('myApp',[]);
+	app.controller('myctrl',['$scope','$http','$interval',function($scope,$http,$interval){
+		$scope.refreshData = function(){
+			$http({
+				method: 'GET',
+				url: "/result"
+			}).success(function(data)  {
+								$scope.result = data;
+								
+								$scope.createGraph(data);
+							}).error(function(err){
+								console.log(err);
+							});
+		}	
+		$scope.createGraph = function(poll)	{
+				MG.data_graphic({
+					title: "Analytics",
+					description: "Polls for Riviera",
+					data: poll,
+					width: 1000,
+					height: 800,
+					target: ".result",
+					x_accessor: "_id",
+					y_accessor: "count",
+					chart_type: "bar",
+					bar_orientation : "horizontal",
+
+				});
+			};
+		 $interval($scope.refreshData, 5000);
+
+	
+
+	}]);	
+	</script>
+
+</body>
+
+
+
+</html>
