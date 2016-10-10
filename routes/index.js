@@ -27,7 +27,7 @@ return next(error);
     RegNo: req.body.reg_no.toUpperCase(),
     ArtistNames: req.body.artist
   };
-  if (!item.RegNo.match(/1[1-9]{1}[A-Z]{3}[0-9]{4}/)) {
+  if (!item.RegNo.match(/1[1-9]{1}[B|M]{1}[A-Z]{2}[0-9]{4}/)) {
     error = new Error("Invalid Registration Number.");
     error.status = 400;
 
