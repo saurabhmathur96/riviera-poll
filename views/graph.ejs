@@ -4,6 +4,7 @@
      <title>Riviera | Artist Poll</title>
      <meta http-equiv="X-UA-Compatible" content="IE=9">
      <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
    
     <style>
   svg g text {
@@ -14,19 +15,39 @@
     margin: 1px;
     font-weight:bold;
 }
-h1 {
+h1,h2 {
   text-align:center;
   font-family: 'Cabin', sans-serif;
   color:#333;
 }
-  <body>
-  
 
-    </style>
+#header {
+      padding:0;
+
+    }
+    #header .header-img img  {
+      width:100%!important;
+
+
+    }
+</style>
+  
+<body>
+
+
+  <div class="container-fluid" id="header">
+      <div class="header-img">
+        <img src='/images/header.jpg'>
+      </div>
+
+
+    </div>
+
+    
 <h1 class="text-center">Riviera 2017</h1>
-<h1>Artist Poll</h1>
+<h2>Artist Poll</h2>
     <hr>
-    <div id="chart"> </div>
+    <div id="chart" style="margin-bottom: 50px"> </div>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     
 
